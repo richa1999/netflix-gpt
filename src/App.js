@@ -1,9 +1,8 @@
-import './App.css';
+import Body from './components/Body';
 
 function App() {
   return (
-    <div className="text-blue-700 text-3xl">Namaste Everyone!
-    </div>
+    <Body />
   );
 }
 
