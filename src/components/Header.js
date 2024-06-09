@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import icon from "../assets/arrow-down-sign-to-navigate.png";
+import icon from "../assets/icons8-sort-down-30.png";
 import Profile from "./Profile";
 import { useDispatch } from "react-redux";
 import { addUser, removeUser } from "../utils/userSlice";
@@ -8,7 +8,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
-import { LOGO, USER_AVATAR } from "../utils/constants";
+import { LOGO } from "../utils/constants";
 
 
 const Header = () => {
@@ -26,12 +26,13 @@ const Header = () => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        const {uid, email, displayName} = user;
+        const {uid, email, displayName, photoURL} = user;
         dispatch(
           addUser({
             uid: uid,
             email: email,
-            displayName: displayName
+            displayName: displayName,
+            photoURL: photoURL
           })
         );
         navigate("/browse");

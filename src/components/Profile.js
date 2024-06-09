@@ -1,5 +1,4 @@
 import React from "react";
-import { USER_AVATAR } from "../utils/constants";
 
 const Profile = (props) => {
   const { user, handleSignOut } = props;
