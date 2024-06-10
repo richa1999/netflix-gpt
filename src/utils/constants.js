@@ -14,3 +14,14 @@ export const API_OPTIONS = {
 };
 
 export const IMG_CDN = "https://image.tmdb.org/t/p/w500";
+
+export const supportedLanguages = [{
+  name: "English",
+  code: "en"
+}, {
+  name: "Hindi",
+  code: "hi"
+}, {
+  name: "Spanish",
+  code: "sp"
+}]
