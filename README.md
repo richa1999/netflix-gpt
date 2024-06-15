@@ -34,6 +34,14 @@ Made the Browse page amazing with tailwind
 GPT SearchPage
 GPT Search Bar
 Multi Lingual Feature
+Get Gemini ai key
+Get search api call
+Get GPT movie suggestion from TMDB
+Created GPT slice and added data
+Resused MovieList component to make movie suggestion container
+Memoization
+Adding .env file to git ignore
+Made website Responsive
 
 
 
