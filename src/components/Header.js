@@ -62,7 +62,7 @@ const Header = () => {
           <div className="flex items-center">
             {showGptSearch && (
               <select
-                className="p-2 m-2 bg-gray-900 text-white"
+                className="p-2 m-2 bg-gray-900 text-white hover:bg-gray-400"
                 onChange={handleLanguageToggle}
               > 
                 {supportedLanguages.map((language) => (
@@ -74,10 +74,10 @@ const Header = () => {
               </select>
             )}
             <button
-              className="py-2 px-4 mx-4 my-2 bg-purple-800 text-white rounded-lg"
+              className="py-2 px-4 mx-4 my-2 bg-white text-red-600 rounded-lg hover:bg-red-400 hover:text-white"
               onClick={handleGPTSearchClick}
             >
-              {showGptSearch ? "Home Page" : "GPT Search"}
+              {showGptSearch ? "Browse" : 'Search'}
             </button>
             <img
               className="h-12 w-12 cursor-pointer mr-3"
