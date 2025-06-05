@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import language from "../utils/languageConstants";
 import { useRef } from "react";
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import {GoogleGenAI} from '@google/genai';
 import { API_TOKEN, API_OPTIONS } from "../utils/constants";
 import { useDispatch } from "react-redux";
 import { addGPTMovieResults } from "../utils/gptSlice";
@@ -11,7 +11,8 @@ const GPTSearchBar = () => {
   const dispatch = useDispatch();
   const langKey = useSelector((store) => store.config.lang);
   const searchText = useRef(null);
-  const genAI = new GoogleGenerativeAI(API_TOKEN);
+  const genAI = new GoogleGenAI({apiKey: API_TOKEN});
+  // const genAI = new GoogleGenerativeAI();
 
   const fetchSearchedMovies = async (query) => {
     const data = await fetch(
@@ -31,10 +32,14 @@ const GPTSearchBar = () => {
       searchText.current.value +
       ". only give me names of 5 movie, comma separated like the example result ahead. Example: The Shawshank Redemption, The Godfather, The Dark Knight, Pulp Fiction, Schindler's List.";
 
-    const model = genAI.getGenerativeModel({ model: "gemini-pro" });
-    const result = await model.generateContent(gptQuery);
-    const response = result.response;
-    const GPTMovies = response.text().split(",");
+    // const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+    const result = await genAI.models.generateContent({
+    model: 'gemini-2.0-flash-001',
+    contents: gptQuery,
+  });
+    // const result = await model.generateContent(gptQuery);
+    const response = result.candidates[0].content.parts[0];
+    const GPTMovies = response.text.split(",");
 
     const promiseArray = GPTMovies.map((movie) => {
       return fetchSearchedMovies(movie);
